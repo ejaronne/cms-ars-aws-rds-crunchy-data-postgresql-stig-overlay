@@ -1,5 +1,5 @@
-# cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay
-InSpec profile overlay to validate the secure configuration of AWS RDS PostgreSQL 9 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) PostgreSQL 9.x STIG Version 1 Release 1 tailored for [CMS ARS 3.1](https://www.cms.gov/Research-Statistics-Data-and-Systems/CMS-Information-Technology/InformationSecurity/Info-Security-Library-Items/ARS-31-Publication.html) for CMS systems categorized as Moderate.
+# cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay
+InSpec profile overlay to validate the secure configuration of AWS RDS PostgreSQL against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) PostgreSQL STIG Version 1 Release 1 tailored for [CMS ARS 3.1](https://www.cms.gov/Research-Statistics-Data-and-Systems/CMS-Information-Technology/InformationSecurity/Info-Security-Library-Items/ARS-31-Publication.html) for CMS systems categorized as Moderate.
 
 ## Getting Started
 ### InSpec (CINC-auditor) setup
@@ -42,7 +42,7 @@ which psql
 ```
 psql –-version
 ```		
-> sample output:  *psql (PostgreSQL) 9.2.24*
+> sample output:  *psql (PostgreSQL) 12.9*
 
 Test psql connectivity to your instance from your runner host:
 ```
@@ -50,10 +50,8 @@ psql -d postgresql://<master user>:<password>@<endpoint>.amazonaws.com/postgres
 ```		
 > *sample output:*
 > 
->  *psql (9.2.24, server 9.6.15)*
->  
->  *WARNING: psql version 9.2, server version 9.6.*
->  
+>  *psql (12.9)*
+>   
 >  *SSL connection (cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256)*
 >  
 >  *Type "help" for help.*
@@ -153,7 +151,7 @@ pg_timezone: 'UTC'
 
 ```
 # How to run
-cinc-auditor exec https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>
+cinc-auditor exec https://github.com/CMSgov/cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
 ### Different Run Options
@@ -171,18 +169,18 @@ When the __"runner"__ host uses this profile overlay for the first time, follow 
 ```
 mkdir profiles
 cd profiles
-git clone https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay.git
-cinc-auditor archive cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay
+git clone https://github.com/CMSgov/cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay.git
+cinc-auditor archive cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay
 cinc-auditor exec <name of generated archive> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```
-cd cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay
+cd cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay
 git pull
 cd ..
-cinc-auditor archive cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay --overwrite
+cinc-auditor archive cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay --overwrite
 cinc-auditor exec <name of generated archive> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
@@ -194,18 +192,16 @@ The JSON InSpec results file may also be loaded into a __[full heimdall server](
 
 ## Authors
 * Eugene Aronne - [ejaronne](https://github.com/ejaronne)
-* Danny Haynes - [djhaynes](https://github.com/djhaynes)
 
 ## Special Thanks
 * Aaron Lippold - [aaronlippold](https://github.com/aaronlippold)
-* Shivani Karikar - [karikarshivani](https://github.com/karikarshivani)
 
 ## Contributing and Getting Help
-To report a bug or feature request, please open an [issue](https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-crunchy-data-postgresql-9-stig-overlay/issues/new).
+To report a bug or feature request, please open an [issue](https://github.com/CMSgov/cms-ars-aws-rds-crunchy-data-postgresql-stig-overlay/issues/new).
 
 ### NOTICE
 
-© 2018-2020 The MITRE Corporation.
+© 2018-2022 The MITRE Corporation.
 
 Approved for Public Release; Distribution Unlimited. Case Number 18-3678.
 
